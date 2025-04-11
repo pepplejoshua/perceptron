@@ -1,30 +1,31 @@
 import numpy as np
-from models.nor_gate import NorGate
+from models.not_gate import NotGate
 
 if __name__ == "__main__":
-    nor_gate = NorGate()
+    not_gate = NotGate()
 
-    # Test Inputs and their expected outputs
-    test_inputs = np.array(
-        [
-            [0, 0],  # 1
-            [0, 1],  # 0
-            [1, 0],  # 0
-            [1, 1],  # 0
-        ]
-    )
+    # Load weights from first run
+    not_gate.load_weights("weights/not_run_1/not_gate_weights.txt")
 
-    expected_outputs = np.array([1, 0, 0, 0])
+    # Test inputs and their expected outputs
+    # NOT Truth Table:
+    # A | Output
+    # 0 |   1
+    # 1 |   0
+    test_inputs = np.array([0, 1])
+    expected_outputs = np.array([1, 0])
 
-    print("\nTesting 2-input OR gate and 1 input NOT gate:")
-    print("x1 | x2 | Expected | Predicted")
+    print("\nTesting NOT gate:")
+    print("Input | Expected | Predicted")
     print("-" * 30)
 
     correct = 0
     for x, expected in zip(test_inputs, expected_outputs):
-        predicted = nor_gate.forward(x)
+        predicted = not_gate.forward(
+            np.array([x])
+        )  # Need to wrap single input in array
         correct += predicted == expected
-        print(f" {x[0]} | {x[1]} |    {expected}    |     {predicted}")
+        print(f"  {x}   |    {expected}    |     {predicted}")
 
     accuracy = correct / len(test_inputs) * 100
     print(f"\nAccuracy: {accuracy:.2f}%")
