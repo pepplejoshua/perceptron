@@ -1,20 +1,20 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from models.or_gate import OrGate
+from models.nor_gate import NorGate
 from utils import get_run_directory
 import os
 
 
-def train_or_gate():
+def train_nor_gate():
     # Create run directory
-    run_dir = get_run_directory("or")
+    run_dir = get_run_directory("nor")
 
     # Create and train the OR gate
-    or_gate = OrGate()
+    or_gate = NorGate()
     accuracy_history = or_gate.train(epochs=100, learning_rate=0.1)
 
     # Save the weights after training
-    weights_path = os.path.join(run_dir, "or_gate_weights.txt")
+    weights_path = os.path.join(run_dir, "nor_gate_weights.txt")
     or_gate.save_weights(weights_path)
 
     # Create figure for plots
@@ -51,7 +51,7 @@ def train_or_gate():
     # Add labels and title
     plt.xlabel("Input 1")
     plt.ylabel("Input 2")
-    plt.title("OR Gate Decision Boundary")
+    plt.title("NOR Gate Decision Boundary")
     plt.grid(True)
 
     plt.tight_layout()
@@ -64,14 +64,14 @@ def train_or_gate():
     return run_dir
 
 
-def test_trained_or_gate(weights_path):
+def test_trained_nor_gate(weights_path):
     # Create a new OR gate and load trained weights
-    or_gate = OrGate()
+    or_gate = NorGate()
     or_gate.load_weights(weights_path)
 
     # Test all possible inputs
     test_inputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-    print("\nTesting OR gate:")
+    print("\nTesting NOR gate:")
     print("Input 1 | Input 2 | Output")
     print("-" * 25)
     for x in test_inputs:
@@ -81,8 +81,8 @@ def test_trained_or_gate(weights_path):
 
 if __name__ == "__main__":
     # Train and save the model
-    run_dir = train_or_gate()
+    run_dir = train_nor_gate()
 
     # Test the trained model using the weights from this run
-    weights_path = os.path.join(run_dir, "or_gate_weights.txt")
-    test_trained_or_gate(weights_path)
+    weights_path = os.path.join(run_dir, "nor_gate_weights.txt")
+    test_trained_nor_gate(weights_path)
