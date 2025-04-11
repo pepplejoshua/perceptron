@@ -1,8 +1,8 @@
 import numpy as np
-from models.nor_gate_or_not import NorGate
+from models.nor_gate_or_not import NorGateFromOrNot
 
 if __name__ == "__main__":
-    nor_gate = NorGate()
+    nor_gate = NorGateFromOrNot()
 
     # Test Inputs and their expected outputs
     test_inputs = np.array(
@@ -16,7 +16,7 @@ if __name__ == "__main__":
 
     expected_outputs = np.array([1, 0, 0, 0])
 
-    print("\nTesting 2-input NOR gate:")
+    print("\nTesting 2-input NOR gate built with OR and NOT gates:")
     print("x1 | x2 | Expected | Predicted")
     print("-" * 30)
 

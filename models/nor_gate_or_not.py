@@ -3,7 +3,7 @@ from .or_gate import OrGate
 from typing import List
 
 
-class NorGate:
+class NorGateFromOrNot:
     def __init__(self) -> None:
         not_weights_and_bias = "weights/not_run_1/not_gate_weights.txt"
         or_weights_and_bias = "weights/or_run_1/or_gate_weights.txt"
