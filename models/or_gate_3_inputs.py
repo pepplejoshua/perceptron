@@ -1,4 +1,4 @@
-from models.or_gate import OrGate
+from .or_gate import OrGate
 from typing import List
 
 

@@ -27,7 +27,7 @@ if __name__ == "__main__":
     for x, expected in zip(test_inputs, expected_outputs):
         predicted = three_input_or.forward(x)
         correct += predicted == expected
-        print(f" {x[0]}  | {x[1]}  | {x[2]}  |    {expected}     |     {predicted}")
+        print(f" {x[0]} | {x[1]} | {x[2]} |    {expected}    |     {predicted}")
 
     accuracy = correct / len(test_inputs) * 100
     print(f"\nAccuracy: {accuracy:.2f}%")
