@@ -1,5 +1,5 @@
 import numpy as np
-from typing import List
+from typing import List, Tuple
 
 
 class SimpleOGPerceptron:
@@ -10,19 +10,22 @@ class SimpleOGPerceptron:
         self.X = None
         self.y = None
 
-    def train(self, epochs: int = 100, learning_rate: float = 0.1) -> List[float]:
+    def train(
+        self, epochs: int = 100, learning_rate: float = 0.1
+    ) -> Tuple[List[float], int]:
         """
         Train the perceptron using its truth table
         Args:
             epochs: number of training iterations
             learning_rate: how much to adjust the weights by
         Returns:
-            accuracy_history: list of accuracies per epoch
+            Tuple of (accuracy_history, num_epochs_used)
         """
         if self.X is None or self.y is None:
             raise ValueError("Truth table (X, y) must be defined before training")
 
         accuracy_history = []
+        num_epochs_used = 0
 
         for epoch in range(epochs):
             correct = 0
@@ -40,12 +43,13 @@ class SimpleOGPerceptron:
 
             accuracy = correct / len(self.X)
             accuracy_history.append(accuracy)
+            num_epochs_used = epoch + 1  # Keep track of actual epochs used
 
             # Early stopping if we achieve 100% accuracy
             if accuracy == 1.0:
                 break
 
-        return accuracy_history
+        return accuracy_history, num_epochs_used
 
     def forward(self, x) -> int:
         """Forward pass of the perceptron"""
