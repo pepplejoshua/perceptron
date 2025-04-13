@@ -18,7 +18,7 @@ class NorGateFromOrNot:
 
     def forward(self, x: List[int]) -> int:
         """
-        Process 2 inputs using a 2-input OR gates and a 1 input NOT gate
+        Process 2 inputs using a 2-input OR gates and a 1-input NOT gate
         connected in cascade
         Args:
             x: List of 2 binary inputs [x1, x2]
